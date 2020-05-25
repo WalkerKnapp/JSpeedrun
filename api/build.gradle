@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.dslplatform:dsl-json:1.9.5'
+    implementation 'com.dslplatform:dsl-json-java8:1.9.5'
+    annotationProcessor 'com.dslplatform:dsl-json-processor:1.9.5'
+}
