@@ -6,8 +6,12 @@ repositories {
     mavenCentral()
 }
 
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
 dependencies {
-    implementation 'com.dslplatform:dsl-json:1.9.5'
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+
+    annotationProcessor 'com.dslplatform:dsl-json-java8:1.9.5'
     implementation 'com.dslplatform:dsl-json-java8:1.9.5'
-    annotationProcessor 'com.dslplatform:dsl-json-processor:1.9.5'
 }
