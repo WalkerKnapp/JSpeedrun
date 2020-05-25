@@ -1,4 +1,5 @@
 rootProject.name = 'jspeedrun'
 include 'api'
 findProject(':api')?.name = 'jspeedrun-api'
+include 'example'
 
