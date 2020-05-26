@@ -10,6 +10,7 @@ import okhttp3.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
@@ -85,6 +86,35 @@ public class JSpeedrun {
                         .addPathSegment(gameId)
                         .addPathSegment("category")
                         .addPathSegment(leaderboardId);
+
+                InputStream response = makeAPIRequest(httpUrl);
+
+                return jsonParser.deserialize(JSpeedrunResponse.class, response);
+            } catch (IOException e) {
+                throw new CompletionException(e);
+            }
+        });
+    }
+
+    public CompletableFuture<JSpeedrunResponse<Leaderboard>> getCategoryLeaderboard(String gameId, String leaderboardId, Map<String, String> variables) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                // Expect response containing JSpeedrunLeaderboard object
+                this.jsonParser.context.set(Leaderboard.class);
+
+                HttpUrl.Builder httpUrl = new HttpUrl.Builder()
+                        .scheme("https")
+                        .host(API_HOST)
+                        .addPathSegment(API_ENDPOINT)
+                        .addPathSegment(API_VERSION)
+                        .addPathSegment("leaderboards")
+                        .addPathSegment(gameId)
+                        .addPathSegment("category")
+                        .addPathSegment(leaderboardId);
+
+                variables.forEach((keyId, valueId) -> {
+                    httpUrl.addQueryParameter("var-" + keyId, valueId);
+                });
 
                 InputStream response = makeAPIRequest(httpUrl);
 
