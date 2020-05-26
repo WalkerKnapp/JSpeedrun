@@ -6,7 +6,7 @@ import com.dslplatform.json.JsonAttribute;
 import java.time.OffsetDateTime;
 
 @CompiledJson
-public class JSpeedrunRunStatus {
+public class RunStatus {
     @JsonAttribute
     public String status;
 

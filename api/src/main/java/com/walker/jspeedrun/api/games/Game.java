@@ -2,8 +2,8 @@ package com.walker.jspeedrun.api.games;
 
 import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
-import com.walker.jspeedrun.api.JSpeedrunData;
-import com.walker.jspeedrun.api.structs.JSpeedrunLink;
+import com.walker.jspeedrun.api.structs.JSpeedrunData;
+import com.walker.jspeedrun.api.structs.Link;
 
 import java.time.OffsetDateTime;
 import java.util.Date;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @CompiledJson
-public class JSpeedrunGame extends JSpeedrunData {
+public class Game extends JSpeedrunData {
     @JsonAttribute
     public String id;
 
@@ -31,7 +31,7 @@ public class JSpeedrunGame extends JSpeedrunData {
     public Date releaseDate;
 
     @JsonAttribute
-    public JSpeedrunGameRuleset ruleset;
+    public GameRuleset ruleset;
 
     @JsonAttribute
     public boolean romhack;
@@ -64,8 +64,8 @@ public class JSpeedrunGame extends JSpeedrunData {
     public OffsetDateTime created;
 
     @JsonAttribute
-    public JSpeedrunGameAssets assets;
+    public GameAssets assets;
 
     @JsonAttribute
-    public List<JSpeedrunLink> links;
+    public List<Link> links;
 }

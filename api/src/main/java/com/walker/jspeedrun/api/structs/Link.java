@@ -4,7 +4,7 @@ import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
 
 @CompiledJson
-public class JSpeedrunLink {
+public class Link {
     @JsonAttribute
     public String rel;
 

@@ -2,16 +2,15 @@ package com.walker.jspeedrun.api.run;
 
 import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
-import com.walker.jspeedrun.api.structs.JSpeedrunLink;
+import com.walker.jspeedrun.api.structs.Link;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @CompiledJson
-public class JSpeedrunRun {
+public class Run {
     @CompiledJson
     public static class Player {
         @JsonAttribute
@@ -85,13 +84,13 @@ public class JSpeedrunRun {
     public String category;
 
     @JsonAttribute
-    public JSpeedrunVideos videos;
+    public Videos videos;
 
     @JsonAttribute
     public String comment;
 
     @JsonAttribute
-    public JSpeedrunRunStatus status;
+    public RunStatus status;
 
     @JsonAttribute
     public List<Player> players;
@@ -115,5 +114,5 @@ public class JSpeedrunRun {
     public Map<String, String> variableValues;
 
     @JsonAttribute
-    public List<JSpeedrunLink> links;
+    public List<Link> links;
 }

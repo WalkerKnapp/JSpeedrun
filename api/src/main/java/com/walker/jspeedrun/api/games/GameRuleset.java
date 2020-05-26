@@ -7,7 +7,7 @@ import com.dslplatform.json.JsonValue;
 import java.util.List;
 
 @CompiledJson
-public class JSpeedrunGameRuleset {
+public class GameRuleset {
     public enum RunTimes {
         REALTIME("realtime"),
         REALTIME_NOLOADS("realtime_noloads"),

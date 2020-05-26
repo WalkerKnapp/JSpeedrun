@@ -1,8 +1,7 @@
-package com.walker.jspeedrun.api;
+package com.walker.jspeedrun.api.structs;
 
 import com.dslplatform.json.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,8 +2,10 @@ package com.walker.jspeedrun.api;
 
 import com.dslplatform.json.DslJson;
 import com.dslplatform.json.runtime.Settings;
-import com.walker.jspeedrun.api.games.JSpeedrunGame;
-import com.walker.jspeedrun.api.leaderboards.JSpeedrunLeaderboard;
+import com.walker.jspeedrun.api.games.Game;
+import com.walker.jspeedrun.api.leaderboards.Leaderboard;
+import com.walker.jspeedrun.api.structs.JSpeedrunData;
+import com.walker.jspeedrun.api.structs.JSpeedrunResponse;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -46,11 +48,11 @@ public class JSpeedrun {
         JSpeedrunData.Converter.forceConfigure(jsonParser);
     }
 
-    public CompletableFuture<JSpeedrunResponse<JSpeedrunGame>> getGames() {
+    public CompletableFuture<JSpeedrunResponse<Game>> getGames() {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 // Expect response containing JSpeedrunGame objects
-                this.jsonParser.context.set(JSpeedrunGame[].class);
+                this.jsonParser.context.set(Game[].class);
 
                 HttpUrl.Builder httpUrl = new HttpUrl.Builder()
                         .scheme("https")
@@ -68,11 +70,11 @@ public class JSpeedrun {
         });
     }
 
-    public CompletableFuture<JSpeedrunResponse<JSpeedrunLeaderboard>> getCategoryLeaderboard(String gameId, String leaderboardId) {
+    public CompletableFuture<JSpeedrunResponse<Leaderboard>> getCategoryLeaderboard(String gameId, String leaderboardId) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 // Expect response containing JSpeedrunLeaderboard object
-                this.jsonParser.context.set(JSpeedrunLeaderboard.class);
+                this.jsonParser.context.set(Leaderboard.class);
 
                 HttpUrl.Builder httpUrl = new HttpUrl.Builder()
                         .scheme("https")

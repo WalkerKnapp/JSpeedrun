@@ -4,40 +4,40 @@ import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
 
 @CompiledJson
-public class JSpeedrunGameAssets {
+public class GameAssets {
     @JsonAttribute
-    public JSpeedrunGameAsset logo;
+    public GameAsset logo;
 
     @JsonAttribute(name = "cover-tiny")
-    public JSpeedrunGameAsset coverTiny;
+    public GameAsset coverTiny;
 
     @JsonAttribute(name = "cover-small")
-    public JSpeedrunGameAsset coverSmall;
+    public GameAsset coverSmall;
 
     @JsonAttribute(name = "cover-medium")
-    public JSpeedrunGameAsset coverMedium;
+    public GameAsset coverMedium;
 
     @JsonAttribute(name = "cover-large")
-    public JSpeedrunGameAsset coverLarge;
+    public GameAsset coverLarge;
 
     @JsonAttribute
-    public JSpeedrunGameAsset icon;
+    public GameAsset icon;
 
     @JsonAttribute(name = "trophy-1st")
-    public JSpeedrunGameAsset trophy1st;
+    public GameAsset trophy1st;
 
     @JsonAttribute(name = "trophy-2nd")
-    public JSpeedrunGameAsset trophy2nd;
+    public GameAsset trophy2nd;
 
     @JsonAttribute(name = "trophy-3rd")
-    public JSpeedrunGameAsset trophy3rd;
+    public GameAsset trophy3rd;
 
     @JsonAttribute(name = "trophy-4th")
-    public JSpeedrunGameAsset trophy4th;
+    public GameAsset trophy4th;
 
     @JsonAttribute
-    public JSpeedrunGameAsset background;
+    public GameAsset background;
 
     @JsonAttribute
-    public JSpeedrunGameAsset foreground;
+    public GameAsset foreground;
 }

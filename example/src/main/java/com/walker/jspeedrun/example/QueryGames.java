@@ -1,7 +1,7 @@
 package com.walker.jspeedrun.example;
 
 import com.walker.jspeedrun.api.JSpeedrun;
-import com.walker.jspeedrun.api.games.JSpeedrunGame;
+import com.walker.jspeedrun.api.games.Game;
 
 public class QueryGames {
     public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class QueryGames {
                     System.out.println("\tmessage=" + response.message);
                     System.out.println("\tdata=");
 
-                    for(JSpeedrunGame game : response.getData()) {
+                    for(Game game : response.getData()) {
                         System.out.println("\t\tgame=");
                         System.out.println("\t\t\tname=" + game.names.get("international"));
                     }

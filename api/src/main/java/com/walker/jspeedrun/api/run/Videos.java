@@ -6,7 +6,7 @@ import com.dslplatform.json.JsonAttribute;
 import java.util.List;
 
 @CompiledJson
-public class JSpeedrunVideos {
+public class Videos {
     @CompiledJson
     public static class VideoLink {
         @JsonAttribute

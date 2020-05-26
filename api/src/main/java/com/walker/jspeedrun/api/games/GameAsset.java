@@ -4,7 +4,7 @@ import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
 
 @CompiledJson
-public class JSpeedrunGameAsset {
+public class GameAsset {
     @JsonAttribute
     public String uri;
 
