@@ -1,10 +1,10 @@
-package com.walker.jspeedrun.api.games;
+package com.walker.jspeedrun.api.structs;
 
 import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
 
 @CompiledJson
-public class JSpeedrunGameLink {
+public class JSpeedrunLink {
     @JsonAttribute
     public String rel;
 

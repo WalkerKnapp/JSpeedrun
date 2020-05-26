@@ -3,8 +3,8 @@ package com.walker.jspeedrun.api.games;
 import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
 import com.walker.jspeedrun.api.JSpeedrunData;
+import com.walker.jspeedrun.api.structs.JSpeedrunLink;
 
-import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
@@ -67,5 +67,5 @@ public class JSpeedrunGame extends JSpeedrunData {
     public JSpeedrunGameAssets assets;
 
     @JsonAttribute
-    public List<JSpeedrunGameLink> links;
+    public List<JSpeedrunLink> links;
 }

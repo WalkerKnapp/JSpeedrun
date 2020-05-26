@@ -3,9 +3,11 @@ package com.walker.jspeedrun.api;
 import com.dslplatform.json.DslJson;
 import com.dslplatform.json.runtime.Settings;
 import com.walker.jspeedrun.api.games.JSpeedrunGame;
+import com.walker.jspeedrun.api.leaderboards.JSpeedrunLeaderboard;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
@@ -57,23 +59,54 @@ public class JSpeedrun {
                         .addPathSegment(API_VERSION)
                         .addPathSegment("games");
 
-                Request.Builder request = new Request.Builder()
-                        .url(httpUrl.build());
-                if (apiKey != null) {
-                    request.addHeader("X-API-Key", apiKey);
-                }
+                InputStream response = makeAPIRequest(httpUrl);
 
-                Response response = okHttpClient.newCall(request.build()).execute();
-                ResponseBody responseBody = response.body();
-
-                if(responseBody == null) {
-                    throw new IllegalStateException("Failed to request body from speedrun.com API endpoint.");
-                }
-
-                return jsonParser.deserialize(JSpeedrunResponse.class, responseBody.byteStream());
+                return jsonParser.deserialize(JSpeedrunResponse.class, response);
             } catch (IOException e) {
                 throw new CompletionException(e);
             }
         });
+    }
+
+    public CompletableFuture<JSpeedrunResponse<JSpeedrunLeaderboard>> getCategoryLeaderboard(String gameId, String leaderboardId) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                // Expect response containing JSpeedrunLeaderboard object
+                this.jsonParser.context.set(JSpeedrunLeaderboard.class);
+
+                HttpUrl.Builder httpUrl = new HttpUrl.Builder()
+                        .scheme("https")
+                        .host(API_HOST)
+                        .addPathSegment(API_ENDPOINT)
+                        .addPathSegment(API_VERSION)
+                        .addPathSegment("leaderboards")
+                        .addPathSegment(gameId)
+                        .addPathSegment("category")
+                        .addPathSegment(leaderboardId);
+
+                InputStream response = makeAPIRequest(httpUrl);
+
+                return jsonParser.deserialize(JSpeedrunResponse.class, response);
+            } catch (IOException e) {
+                throw new CompletionException(e);
+            }
+        });
+    }
+
+    private InputStream makeAPIRequest(HttpUrl.Builder httpUrl) throws IOException {
+        Request.Builder request = new Request.Builder()
+                .url(httpUrl.build());
+        if (apiKey != null) {
+            request.addHeader("X-API-Key", apiKey);
+        }
+
+        Response response = okHttpClient.newCall(request.build()).execute();
+        ResponseBody responseBody = response.body();
+
+        if(responseBody == null) {
+            throw new IllegalStateException("Failed to request body from speedrun.com API endpoint.");
+        }
+
+        return responseBody.byteStream();
     }
 }
