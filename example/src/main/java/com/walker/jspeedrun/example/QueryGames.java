@@ -18,8 +18,7 @@ public class QueryGames {
                         System.out.println("\t\tgame=");
                         System.out.println("\t\t\tname=" + game.names.get("international"));
                     }
-                })
-                .exceptionally(t -> {
+                }).exceptionally(t -> {
                     t.printStackTrace();
                     return null;
                 }).join();

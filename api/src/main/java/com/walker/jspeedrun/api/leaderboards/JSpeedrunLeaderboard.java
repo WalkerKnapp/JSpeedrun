@@ -2,6 +2,7 @@ package com.walker.jspeedrun.api.leaderboards;
 
 import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
+import com.walker.jspeedrun.api.JSpeedrunData;
 import com.walker.jspeedrun.api.run.JSpeedrunRun;
 import com.walker.jspeedrun.api.structs.JSpeedrunLink;
 import com.walker.jspeedrun.api.games.JSpeedrunGameRuleset;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @CompiledJson
-public class JSpeedrunLeaderboard {
+public class JSpeedrunLeaderboard extends JSpeedrunData {
     @CompiledJson
     public static class LeaderboardPlace {
         @JsonAttribute
@@ -39,7 +40,7 @@ public class JSpeedrunLeaderboard {
     public String region;
 
     @JsonAttribute
-    public boolean emulators;
+    public String emulators;
 
     @JsonAttribute
     public JSpeedrunGameRuleset.RunTimes timing;

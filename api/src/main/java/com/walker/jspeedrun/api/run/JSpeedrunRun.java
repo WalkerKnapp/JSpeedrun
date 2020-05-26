@@ -4,6 +4,7 @@ import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonAttribute;
 import com.walker.jspeedrun.api.structs.JSpeedrunLink;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
@@ -32,25 +33,25 @@ public class JSpeedrunRun {
         public String primary;
 
         @JsonAttribute(name = "primary_t")
-        public int primaryTime;
+        public double primaryTime;
 
         @JsonAttribute
         public String realtime;
 
         @JsonAttribute(name = "realtime_t")
-        public int realtimeTime;
+        public double realtimeTime;
 
         @JsonAttribute(name = "realtime_noloads")
         public String realtimeNoLoads;
 
         @JsonAttribute(name = "realtime_noloads_t")
-        public int realtimeNoLoadsTime;
+        public double realtimeNoLoadsTime;
 
         @JsonAttribute
         public String ingame;
 
         @JsonAttribute(name = "ingame_t")
-        public int ingameTime;
+        public double ingameTime;
     }
 
     @CompiledJson
@@ -96,7 +97,7 @@ public class JSpeedrunRun {
     public List<Player> players;
 
     @JsonAttribute
-    public Date date;
+    public LocalDate date;
 
     @JsonAttribute
     public OffsetDateTime submitted;

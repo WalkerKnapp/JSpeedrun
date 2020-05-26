@@ -2,6 +2,7 @@ package com.walker.jspeedrun.api;
 
 import com.dslplatform.json.*;
 import com.walker.jspeedrun.api.games.JSpeedrunGame;
+import com.walker.jspeedrun.api.leaderboards.JSpeedrunLeaderboard;
 
 public class JSpeedrunData {
 
@@ -11,17 +12,22 @@ public class JSpeedrunData {
         private static JsonReader.ReadObject<JSpeedrunGame> GAME_READER;
         private static JsonWriter.WriteObject<JSpeedrunGame> GAME_WRITER;
 
+        private static JsonReader.ReadObject<JSpeedrunLeaderboard> LEADERBOARD_READER;
+        private static JsonWriter.WriteObject<JSpeedrunLeaderboard> LEADERBOARD_WRITER;
+
         public static void forceConfigure(DslJson dslJson) {
             if(GAME_READER == null) {
                 GAME_READER = dslJson.tryFindReader(JSpeedrunGame.class);
                 GAME_WRITER = dslJson.tryFindWriter(JSpeedrunGame.class);
+
+                LEADERBOARD_READER = dslJson.tryFindReader(JSpeedrunLeaderboard.class);
+                LEADERBOARD_WRITER = dslJson.tryFindWriter(JSpeedrunLeaderboard.class);
             }
         }
 
         @Override
         public void configure(DslJson dslJson) {
-            GAME_READER = dslJson.tryFindReader(JSpeedrunGame.class);
-            GAME_WRITER = dslJson.tryFindWriter(JSpeedrunGame.class);
+            forceConfigure(dslJson);
         }
 
         public static final JsonReader.ReadObject<JSpeedrunData> JSON_READER = reader -> {
@@ -37,6 +43,8 @@ public class JSpeedrunData {
 
             if (JSpeedrunGame.class.equals(expectedType)) {
                 return GAME_READER.read(reader);
+            } else if (JSpeedrunLeaderboard.class.equals(expectedType)) {
+                return LEADERBOARD_READER.read(reader);
             } else {
                 throw new IllegalStateException("Unexpected type specified as presumed: " + (expectedType == null ? "null" : expectedType.getCanonicalName()));
             }
@@ -45,6 +53,8 @@ public class JSpeedrunData {
         public static final JsonWriter.WriteObject<JSpeedrunData> JSON_WRITER = (writer, value) -> {
             if(value instanceof JSpeedrunGame) {
                 GAME_WRITER.write(writer, (JSpeedrunGame) value);
+            } else if(value instanceof JSpeedrunLeaderboard) {
+                LEADERBOARD_WRITER.write(writer, (JSpeedrunLeaderboard) value);
             }
         };
     }
